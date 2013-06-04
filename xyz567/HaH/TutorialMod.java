@@ -28,7 +28,7 @@ import net.minecraftforge.common.Configuration;
 /*
 * Basic needed forge stuff
 */
-@Mod(modid="TutorialMod",name="Half and Half mod",version="V0.0.1")
+@Mod(modid="TutorialMod",name="Half and Half mod",version="V0.0.2")
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
 
 public class TutorialMod {
@@ -37,30 +37,46 @@ public class TutorialMod {
 	* ToolMaterial
 	*/
 
-	//Telling forge that we are creating these
+	//Telling forge what is being created
+	
+	//Items
 	public static Item GoldDiamondIngot;
 	
+	//Blocks
 	public static Block Golddiamond;
 	public static Block Golddiamondopposite;
 	public static Block Golddiamond3;
 	public static Block Golddiamond4;
 	
+	//Config ID's
+	public static int golddiamondID;
+	public static int golddiamondoppositeID;
+	public static int golddiamond3ID;
+	public static int golddiamond4ID;
+	public static int GoldDiamondIngotID;
+	
+	//Run PreInit
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event){
+		//Load config files/Make new ones
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		
 		config.load();
 		
-        int golddiamondID = config.getBlock("Golddiamond", 3611).getInt();
-        
-        int golddiamondoppositeID = config.getBlock("Golddiamondopposite", 3612).getInt();
-        
-        int golddiamond3ID = config.getBlock("Golddiamond3", 3613).getInt();
-        
-        int golddiamond4ID = config.getBlock("Golddiamond4", 3614).getInt();
-
-        int GoldDiamondIngotID = config.getItem("GoldDiamondIngot", 3678).getInt();
+		//set config ID's
 		
+        golddiamondID = config.getBlock("Golddiamond", 3611).getInt();
+        
+        golddiamondoppositeID = config.getBlock("Golddiamondopposite", 3612).getInt();
+        
+        golddiamond3ID = config.getBlock("Golddiamond3", 3613).getInt();
+        
+        golddiamond4ID = config.getBlock("Golddiamond4", 3614).getInt();
+
+        GoldDiamondIngotID = config.getItem("GoldDiamondIngot", 3678).getInt();
+		
+        //Save the config
+        
 		config.save();
 	}
 	//declaring Init
@@ -68,23 +84,23 @@ public class TutorialMod {
 	public void load(FMLInitializationEvent event){
 		//define items
 		
-		GoldDiamondIngot = new HalfItems(3678).setUnlocalizedName("GoldDiamondIngot");
+		GoldDiamondIngot = new HalfItems(GoldDiamondIngotID).setUnlocalizedName("GoldDiamondIngot");
 		LanguageRegistry.addName(GoldDiamondIngot, "Gold-Diamond Ingot");
 		
 		//Adding blocks
-		Golddiamond = new golddiamondblock(3611, "Golddiamond").setUnlocalizedName("golddiamond").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
+		Golddiamond = new golddiamondblock(golddiamondID, "Golddiamond").setUnlocalizedName("golddiamond").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
 		GameRegistry.registerBlock(Golddiamond, "Golddiamond");
 		LanguageRegistry.addName(Golddiamond, "Gold-Diamond cross");
 		
-		Golddiamondopposite = new golddiamondopposite(3612, "Golddiamondopposite").setUnlocalizedName("golddiamondback").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
+		Golddiamondopposite = new golddiamondopposite(golddiamondoppositeID, "Golddiamondopposite").setUnlocalizedName("golddiamondback").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
 		GameRegistry.registerBlock(Golddiamondopposite, "Golddiamondopposite");
 		LanguageRegistry.addName(Golddiamondopposite, "Gold-Diamond cross");
 		
-		Golddiamond3 = new golddiamond3(3613, "Golddiamond3").setUnlocalizedName("golddiamond3").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
+		Golddiamond3 = new golddiamond3(golddiamond3ID, "Golddiamond3").setUnlocalizedName("golddiamond3").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
 		GameRegistry.registerBlock(Golddiamond3, "Golddiamond3");
 		LanguageRegistry.addName(Golddiamond3, "Gold-Diamond cross");
 		
-		Golddiamond4 = new golddiamond4(3614, "Golddiamond4").setUnlocalizedName("golddiamond4").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
+		Golddiamond4 = new golddiamond4(golddiamond4ID, "Golddiamond4").setUnlocalizedName("golddiamond4").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
 		GameRegistry.registerBlock(Golddiamond4, "Golddiamond4");
 		LanguageRegistry.addName(Golddiamond4, "Gold-Diamond cross");
 		
