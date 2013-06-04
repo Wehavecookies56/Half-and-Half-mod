@@ -1,4 +1,4 @@
-package xyz567.Tutorial;
+package xyz567.HaH;
 
 /*
 * Basic importing

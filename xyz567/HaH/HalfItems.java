@@ -1,4 +1,4 @@
-package xyz567.Tutorial;
+package xyz567.HaH;
 
 import net.minecraft.item.Item;
 import cpw.mods.fml.relauncher.*;

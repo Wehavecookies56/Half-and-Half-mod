@@ -1,4 +1,4 @@
-package xyz567.Tutorial;
+package xyz567.HaH;
 
 import java.util.Random;
 
@@ -13,21 +13,23 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.Icon;
 
-public class golddiamondopposite extends Block {
+public class golddiamond4 extends Block {
 	
-	public golddiamondopposite(int par1, String texture){
+	public golddiamond4(int par1, String texture) {
 		super(par1, Material.rock);
 		setCreativeTab(CreativeTabs.tabBlock);
 	}
-	
+	//Drops when broken with pickaxe
+		
 	public int idDropped(int par1, Random par2Random, int par3){
-		return TutorialMod.Golddiamondopposite.blockID;
+		return TutorialMod.Golddiamond4.blockID;
 	}
 	public int quantityDropped(Random random){
 		return 1;
 	}
 	
+	//Texture the block (Not sure if it's required)
 	public String getTextureFile(){
-		return "/textures/blocks/golddiamondback.png";
+		return "/textures/blocks/golddiamond4.png";
 	}
 }
