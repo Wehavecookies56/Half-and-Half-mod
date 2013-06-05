@@ -28,7 +28,7 @@ import net.minecraftforge.common.Configuration;
 /*
 * Basic needed forge stuff
 */
-@Mod(modid="TutorialMod",name="Half and Half mod",version="V0.0.2")
+@Mod(modid="TutorialMod",name="Half and Half mod",version="V0.0.3")
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
 
 public class TutorialMod {
@@ -37,10 +37,15 @@ public class TutorialMod {
 	* ToolMaterial
 	*/
 
+	
+	public static EnumToolMaterial GoldDiamondMaterial;
 	//Telling forge what is being created
 	
 	//Items
 	public static Item GoldDiamondIngot;
+	
+	//tools
+	public static Item GoldDiamondPick;
 	
 	//Blocks
 	public static Block Golddiamond;
@@ -54,6 +59,7 @@ public class TutorialMod {
 	public static int golddiamond3ID;
 	public static int golddiamond4ID;
 	public static int GoldDiamondIngotID;
+	public static int GoldDiamondPickID;
 	
 	//Run PreInit
 	@PreInit
@@ -75,6 +81,8 @@ public class TutorialMod {
 
         GoldDiamondIngotID = config.getItem("GoldDiamondIngot", 3678).getInt();
 		
+        GoldDiamondPickID = config.getItem("GoldDiamondPick",3679).getInt();
+        
         //Save the config
         
 		config.save();
@@ -83,6 +91,11 @@ public class TutorialMod {
 	@Init
 	public void load(FMLInitializationEvent event){
 		//define items
+		
+		GoldDiamondMaterial = EnumHelper.addToolMaterial(Strings.GoldDiamondMaterial, 3, 797, 12F, 2, 2);
+		
+		GoldDiamondPick = new GDPick(GoldDiamondPickID, GoldDiamondMaterial).setUnlocalizedName("golddiamondpick");
+		LanguageRegistry.addName(GoldDiamondPick, "Gold-Diamond Pickaxe");
 		
 		GoldDiamondIngot = new HalfItems(GoldDiamondIngotID).setUnlocalizedName("GoldDiamondIngot");
 		LanguageRegistry.addName(GoldDiamondIngot, "Gold-Diamond Ingot");
@@ -134,6 +147,12 @@ public class TutorialMod {
 		GameRegistry.addShapelessRecipe(new ItemStack(TutorialMod.GoldDiamondIngot, 2), new Object[] {
 			Item.ingotGold,
 			Item.diamond,
+		});
+		
+		GameRegistry.addRecipe(new ItemStack(TutorialMod.GoldDiamondPick, 1), new Object[] {
+			"GGG", " S ", " S ",
+			'G', TutorialMod.GoldDiamondIngot ,
+			'S', Item.stick ,  
 		});
 	}
 }
