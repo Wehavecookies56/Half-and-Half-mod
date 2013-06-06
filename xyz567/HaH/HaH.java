@@ -1,6 +1,6 @@
 package xyz567.HaH;
 
-//To do: Add all tools, add more half's and half's
+//To do: Add more half's and half's
 
 /*
 * Basic importing
@@ -28,7 +28,7 @@ import net.minecraftforge.common.Configuration;
 /*
 * Basic needed forge stuff
 */
-@Mod(modid="HaH",name="Half and Half mod",version="V0.0.3")
+@Mod(modid="HaH",name="Half and Half mod",version="V0.0.3.1")
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
 
 public class HaH {
@@ -74,7 +74,7 @@ public class HaH {
 	public void preInit(FMLPreInitializationEvent event){
 		//Load config files/Make new ones
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-		
+				
 		config.load();
 		
 		//set config ID's
@@ -91,13 +91,13 @@ public class HaH {
 		
         GoldDiamondPickID = config.getItem("GoldDiamondPick",3679).getInt();
         
-        GoldDiamondAxeID = config.getItem("GoldDIamondAxe", 3680).getInt();
+        GoldDiamondAxeID = config.getItem("GoldDiamondAxe", 3680).getInt();
         
         GoldDiamondHoeID = config.getItem("GoldDiamondHoe", 3681).getInt();
         
         GoldDiamondSwordID = config.getItem("GoldDiamondSword", 3682).getInt();
         
-        GoldDiamondSpadeID = config.getItem("GoldDiamondSpade", 3683).getInt();
+        GoldDiamondSpadeID = config.getItem("GoldDiamondShovel", 3683).getInt();
         
         //Save the config
         
@@ -118,13 +118,13 @@ public class HaH {
 		GoldDiamondAxe = new GDAxe(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondaxe");
 		LanguageRegistry.addName(GoldDiamondAxe, "Gold-Diamond Axe");
 		
-		GoldDiamondHoe = new GDHoe(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondhoe");
+		GoldDiamondHoe = new GDHoe(GoldDiamondHoeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondhoe");
 		LanguageRegistry.addName(GoldDiamondHoe, "Gold-Diamond Hoe");
 		
-		GoldDiamondSword = new GDSword(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondsword");
+		GoldDiamondSword = new GDSword(GoldDiamondSwordID, EnumToolMaterial.EMERALD).setUnlocalizedName("golddiamondsword");
 		LanguageRegistry.addName(GoldDiamondSword, "Gold-Diamond Sword");
 		
-		GoldDiamondShovel = new GDShovel(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondshovel");
+		GoldDiamondShovel = new GDShovel(GoldDiamondSpadeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondshovel");
 		LanguageRegistry.addName(GoldDiamondShovel, "Gold-Diamond Shovel");
 		
 		
@@ -186,6 +186,12 @@ public class HaH {
 			"GGG", " S ", " S ",
 			'G', HaH.GoldDiamondIngot ,
 			'S', Item.stick ,  
+		});
+		
+		GameRegistry.addRecipe(new ItemStack(HaH.GoldDiamondSword, 1), new Object[] {
+			" G ", " G ", " S ",
+			'G', HaH.GoldDiamondIngot ,
+			'S', Item.stick,
 		});
 	}
 }
