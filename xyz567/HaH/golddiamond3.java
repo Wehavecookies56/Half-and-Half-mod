@@ -22,7 +22,7 @@ public class golddiamond3 extends Block {
 	//Drops when broken with pickaxe
 		
 	public int idDropped(int par1, Random par2Random, int par3){
-		return TutorialMod.Golddiamond3.blockID;
+		return HaH.Golddiamond3.blockID;
 	}
 	public int quantityDropped(Random random){
 		return 1;

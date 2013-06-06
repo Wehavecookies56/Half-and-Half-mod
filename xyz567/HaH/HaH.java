@@ -1,10 +1,10 @@
 package xyz567.HaH;
 
+//To do: Add all tools, add more half's and half's
+
 /*
 * Basic importing
 */
-
-
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
@@ -28,10 +28,10 @@ import net.minecraftforge.common.Configuration;
 /*
 * Basic needed forge stuff
 */
-@Mod(modid="TutorialMod",name="Half and Half mod",version="V0.0.3")
+@Mod(modid="HaH",name="Half and Half mod",version="V0.0.3")
 @NetworkMod(clientSideRequired=true,serverSideRequired=false)
 
-public class TutorialMod {
+public class HaH {
 
 	/*
 	* ToolMaterial
@@ -46,6 +46,10 @@ public class TutorialMod {
 	
 	//tools
 	public static Item GoldDiamondPick;
+	public static Item GoldDiamondAxe;
+	public static Item GoldDiamondHoe;
+	public static Item GoldDiamondSword;
+	public static Item GoldDiamondShovel;
 	
 	//Blocks
 	public static Block Golddiamond;
@@ -60,6 +64,10 @@ public class TutorialMod {
 	public static int golddiamond4ID;
 	public static int GoldDiamondIngotID;
 	public static int GoldDiamondPickID;
+	public static int GoldDiamondAxeID;
+	public static int GoldDiamondHoeID;
+	public static int GoldDiamondSwordID;
+	public static int GoldDiamondSpadeID;
 	
 	//Run PreInit
 	@PreInit
@@ -83,6 +91,14 @@ public class TutorialMod {
 		
         GoldDiamondPickID = config.getItem("GoldDiamondPick",3679).getInt();
         
+        GoldDiamondAxeID = config.getItem("GoldDIamondAxe", 3680).getInt();
+        
+        GoldDiamondHoeID = config.getItem("GoldDiamondHoe", 3681).getInt();
+        
+        GoldDiamondSwordID = config.getItem("GoldDiamondSword", 3682).getInt();
+        
+        GoldDiamondSpadeID = config.getItem("GoldDiamondSpade", 3683).getInt();
+        
         //Save the config
         
 		config.save();
@@ -92,13 +108,30 @@ public class TutorialMod {
 	public void load(FMLInitializationEvent event){
 		//define items
 		
+		//Adding materials
 		GoldDiamondMaterial = EnumHelper.addToolMaterial(Strings.GoldDiamondMaterial, 3, 797, 12F, 2, 2);
 		
+		//Adding tools
 		GoldDiamondPick = new GDPick(GoldDiamondPickID, GoldDiamondMaterial).setUnlocalizedName("golddiamondpick");
 		LanguageRegistry.addName(GoldDiamondPick, "Gold-Diamond Pickaxe");
 		
+		GoldDiamondAxe = new GDAxe(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondaxe");
+		LanguageRegistry.addName(GoldDiamondAxe, "Gold-Diamond Axe");
+		
+		GoldDiamondHoe = new GDHoe(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondhoe");
+		LanguageRegistry.addName(GoldDiamondHoe, "Gold-Diamond Hoe");
+		
+		GoldDiamondSword = new GDSword(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondsword");
+		LanguageRegistry.addName(GoldDiamondSword, "Gold-Diamond Sword");
+		
+		GoldDiamondShovel = new GDShovel(GoldDiamondAxeID, GoldDiamondMaterial).setUnlocalizedName("golddiamondshovel");
+		LanguageRegistry.addName(GoldDiamondShovel, "Gold-Diamond Shovel");
+		
+		
+		//Adding Items
 		GoldDiamondIngot = new HalfItems(GoldDiamondIngotID).setUnlocalizedName("GoldDiamondIngot");
 		LanguageRegistry.addName(GoldDiamondIngot, "Gold-Diamond Ingot");
+		
 		
 		//Adding blocks
 		Golddiamond = new golddiamondblock(golddiamondID, "Golddiamond").setUnlocalizedName("golddiamond").setHardness(5.0F).setStepSound(Block.soundMetalFootstep).setResistance(10.0F);
@@ -119,39 +152,39 @@ public class TutorialMod {
 		
 		// crafting of blocks
 		
-		GameRegistry.addRecipe(new ItemStack(TutorialMod.Golddiamond, 2), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(HaH.Golddiamond, 2), new Object[] {
 			"G  ", "   ", "  D",
 			'D', BlockOre.blockDiamond,
 			'G', BlockOre.blockGold,
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(TutorialMod.Golddiamondopposite, 2), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(HaH.Golddiamondopposite, 2), new Object[] {
 			"  G", "   ", "D  ",
 			'D', BlockOre.blockDiamond,
 			'G', BlockOre.blockGold,
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(TutorialMod.Golddiamond3, 2), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(HaH.Golddiamond3, 2), new Object[] {
 			"D  ", "   ", "  G",
 			'D', BlockOre.blockDiamond,
 			'G', BlockOre.blockGold,
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(TutorialMod.Golddiamond4, 2), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(HaH.Golddiamond4, 2), new Object[] {
 			"  D", "   ", "G  ",
 			'D', BlockOre.blockDiamond,
 			'G', BlockOre.blockGold,
 		});
 		
 		//crafting of items
-		GameRegistry.addShapelessRecipe(new ItemStack(TutorialMod.GoldDiamondIngot, 2), new Object[] {
+		GameRegistry.addShapelessRecipe(new ItemStack(HaH.GoldDiamondIngot, 2), new Object[] {
 			Item.ingotGold,
 			Item.diamond,
 		});
 		
-		GameRegistry.addRecipe(new ItemStack(TutorialMod.GoldDiamondPick, 1), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(HaH.GoldDiamondPick, 1), new Object[] {
 			"GGG", " S ", " S ",
-			'G', TutorialMod.GoldDiamondIngot ,
+			'G', HaH.GoldDiamondIngot ,
 			'S', Item.stick ,  
 		});
 	}
